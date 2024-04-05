@@ -170,11 +170,11 @@ function MyState(props) {
     }
   }
 
-  const [searchkey, setSearchkey] = useState('')
+  // const [searchkey, setSearchkey] = useState('')
   const [filterType, setFilterType] = useState('')
-  const [filterPrice, setFilterPrice] = useState('')
+  // const [filterPrice, setFilterPrice] = useState('')
   return (
-    <MyContext.Provider value={{mode , toggleMode , loading , setLoading, products, setProducts,addProduct , product ,edithandle, updateProduct , deleteProduct , order , user ,searchkey ,setSearchkey ,filterType ,setFilterType ,filterPrice ,setFilterPrice}}>
+    <MyContext.Provider value={{mode , toggleMode , loading , setLoading, products, setProducts,addProduct , product ,edithandle, updateProduct , deleteProduct , order , user ,filterType ,setFilterType}}>
        {props.children}
     </MyContext.Provider>
   )
