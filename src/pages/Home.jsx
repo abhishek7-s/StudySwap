@@ -9,6 +9,7 @@ import Track from '../components/track/Track'
 import Footer from '../components/footer/Footer'
 import { useDispatch, useSelector } from 'react-redux'
 import { addToCart, deleteFromCart } from '../redux/cartSlice'
+import FilterProduct from '../components/productCard/FilterProduct'
 
 function Home() {
   const context = useContext(myContext)
@@ -21,29 +22,14 @@ function Home() {
   const dispatch = useDispatch();
   const cartItem = useSelector((state)=> state.cart)
 
-  console.log(cartItem) 
-  
-  const addCart = () => {
-    dispatch(addToCart("shirt"));
-  }
-
-  const deleteCart = () => {
-    dispatch(deleteFromCart("shirt"));
-  }
-
   return (
     <Layout>
-      <div className="flex gap-5 justify-center">
-        <button className=' bg-gray-300 p-5' onClick={()=> addCart()}>add</button>
-        <button className=' bg-gray-300 p-5' onClick={()=> deleteCart()}>del</button>
-      </div>
       <HeroSection/>
-      <Filter/>
+      {/* <Filter/>
+      <FilterProduct/> */}
       <ProductCard/>
       <Track/>
       <Testimonial/>
-        <h1>Name : {name}</h1>
-        <h1>Roll No : {rollno}</h1>
     </Layout>
   )
 }

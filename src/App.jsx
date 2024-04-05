@@ -20,6 +20,7 @@ import UpdateProduct from './pages/admin/pages/UpdateProduct';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Allproducts from './pages/AllProduct';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home/>} />
+          <Route path="/allproducts" element={<Allproducts/>} />
           <Route path="/order" element={
             <ProtectedRoutes>
               <Order/>
@@ -34,9 +36,9 @@ function App() {
           } />
           <Route path="/cart" element={<Cart/>} />
           <Route path="/dashboard" element={
-            <ProtectedRoutes>
+            <ProtectedRoutesForAdmin>
               <Dashboard/>
-            </ProtectedRoutes>
+            </ProtectedRoutesForAdmin>
           } />
           <Route path="/login" element={<Login/>} />
           <Route path="/signup" element={<Signup/>} />
@@ -46,13 +48,13 @@ function App() {
               <Cart/>
             </ProtectedRoutes>} />
           <Route path="/addproduct" element={
-            <ProtectedRoutes>
+            <ProtectedRoutesForAdmin>
               <AddProduct/>
-            </ProtectedRoutes>} />
+            </ProtectedRoutesForAdmin>} />
           <Route path="/updateproduct" element={
-            <ProtectedRoutes>
+            <ProtectedRoutesForAdmin>
               <UpdateProduct />
-            </ProtectedRoutes>}  />
+            </ProtectedRoutesForAdmin>}  />
           <Route path="/*" element={<NoPage/>} />
         </Routes>
         <ToastContainer/>
@@ -80,7 +82,7 @@ export const ProtectedRoutes = ({ children }) => {
 export const ProtectedRoutesForAdmin = ({children}) => {
   const admin = JSON.parse(localStorage.getItem('user'))
   console.log(admin.user.email)
-  if (admin.user.email === 'knupadhyay784@gmail.com') {
+  if (admin.user.email === 'abhishek@gmail.com') {
     return children
   }
   else {
