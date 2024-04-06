@@ -6,7 +6,7 @@ import { FiSun } from 'react-icons/fi'
 import myContext from '../../context/data/myContext'
 import { RxCross2 } from 'react-icons/rx'
 import { useSelector } from 'react-redux'
-
+import userpic from '../../assets/userIcon.png'
 function Navbar() {
   const [open, setOpen] = useState(false)
 
@@ -64,7 +64,7 @@ function Navbar() {
                     <Link to={'/'} className="-m-2 block p-2 font-medium text-gray-900 cursor-pointer">
                       <img
                         className="inline-block w-10 h-10 rounded-full"
-                        src="src/assets/userIcon.png"
+                        src={userpic}
                         alt="User" />                                        
                     </Link>
                       {user? <h3 className='text-lg font-bold'>Profile</h3> : "Guest"}
@@ -176,7 +176,7 @@ function Navbar() {
                   <a href="#" className="flex items-center text-gray-700 ">
                     <img
                       className="inline-block w-11 h-11 rounded-full"
-                      src="src/assets/userIcon.png"
+                      src={userpic}
                       alt="user" />
                   </a>
                 </div>
