@@ -34,7 +34,6 @@ function App() {
               <Order/>
             </ProtectedRoutes>
           } />
-          <Route path="/cart" element={<Cart/>} />
           <Route path="/dashboard" element={
             <ProtectedRoutesForAdmin>
               <Dashboard/>
@@ -82,7 +81,7 @@ export const ProtectedRoutes = ({ children }) => {
 export const ProtectedRoutesForAdmin = ({children}) => {
   const admin = JSON.parse(localStorage.getItem('user'))
   console.log(admin.user.email)
-  if (admin.user.email === 'abhishek@gmail.com') {
+  if (admin.user.email === 'patilpratikanil252004@gmail.com' || admin.user.email === 'abhishek@gmail.com') {
     return children
   }
   else {

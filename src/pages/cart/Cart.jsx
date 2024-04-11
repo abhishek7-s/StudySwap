@@ -7,7 +7,7 @@ import { deleteFromCart } from '../../redux/cartSlice';
 import { toast } from 'react-toastify';
 import { addDoc, collection } from 'firebase/firestore';
 import { fireDB } from '../../firebase/FirebaseConfig';
-
+import {Navigate} from "react-router-dom";
 
 
 function Cart() {

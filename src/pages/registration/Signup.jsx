@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom'
 import myContext from '../../context/data/myContext';
 import { toast } from 'react-toastify';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword , signInWithEmailAndPassword} from 'firebase/auth';
 import { auth, fireDB } from '../../firebase/FirebaseConfig';
 import { Timestamp, addDoc, collection } from 'firebase/firestore';
 import Loader from '../../components/loader/Loader';
@@ -26,9 +26,6 @@ function Signup() {
 
         try {
             const users = await createUserWithEmailAndPassword(auth, email, password);
-
-            // console.log(users)
-
             const user = {
                 name: name,
                 uid: users.user.uid,
@@ -42,6 +39,24 @@ function Signup() {
             setEmail("");
             setPassword("");
             setLoading(false)
+
+            //Login user after Signup
+            const result = await signInWithEmailAndPassword(auth, email, password)
+            localStorage.setItem('user',JSON.stringify(result));
+            toast.success('Signin Successfully', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+            setTimeout(() => {
+                window.location.href= '/'
+            }, 700);
+            setLoading(false);
             
         } catch (error) {
             console.log(error)
