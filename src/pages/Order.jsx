@@ -10,12 +10,14 @@ function Order() {
   const { mode, loading, order } = context
 
   // console.log(order.filter(obj => obj.userid == userid).length)  //to checks user orders
-  
+
   return (
     <Layout>
        {loading && <Loader />}
       {order.filter(obj => obj.userid == userid).length > 0 ?
         (<>
+          <h1 className='text-xl font-bold text-black  px-5 py-5 rounded flex justify-center' style={{ color: mode === 'dark' ? 'white' : '', }}>Your Orders </h1> 
+
           <div className=" h-full pt-10">
             {
               order.filter(obj => obj.userid == userid).map((order) => {
