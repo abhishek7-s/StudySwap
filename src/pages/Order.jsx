@@ -2,20 +2,23 @@ import React, { useContext } from 'react'
 import myContext from '../context/data/myContext'
 import Layout from '../components/layout/Layout'
 import Loader from '../components/loader/Loader'
+import { Link } from 'react-router-dom'
 
 function Order() {
   const userid = JSON.parse(localStorage.getItem('user')).user.uid
   const context = useContext(myContext)
   const { mode, loading, order } = context
+
+  // console.log(order.filter(obj => obj.userid == userid).length)  //to checks user orders
+  
   return (
     <Layout>
        {loading && <Loader />}
-      {order.length > 0 ?
+      {order.filter(obj => obj.userid == userid).length > 0 ?
         (<>
           <div className=" h-full pt-10">
             {
               order.filter(obj => obj.userid == userid).map((order) => {
-                // order.cartItems.map()
                 return (
                   <div className="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
                     {
@@ -44,10 +47,18 @@ function Order() {
         </>)
         :
         (
-          <h2 className=' text-center tex-2xl text-white'>Not Order</h2>
+          <div className='flex flex-col justify-center items-center h-[70vh]'>
+            <h1 className='text-lg font-semibold text-black  px-2 py-1 rounded' style={{ color: mode === 'dark' ? 'white' : '', }}>You Have Not Placed Order</h1>
+            <Link
+              to={'/'}
+              className="inline-flex h-10 items-center justify-center rounded-md bg-teal-500 px-8 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-teal-800 "
+            >  Buy Now</Link>
+
+          </div>
         )
 
       }
+      
     </Layout>
   )
 }
